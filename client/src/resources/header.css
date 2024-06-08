@@ -1,0 +1,72 @@
+/* Header.css */
+.header-main {
+    max-height: 6vh;
+    min-height: 6vh;
+}
+.search-container {
+    width: 50%;
+    height: 75%;
+    background-color: rgb(234, 243, 252);
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+
+  .search-icon {
+    margin-right: 0.5rem;
+  }
+
+  .search-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+  }
+
+  .user-details {
+    margin-right: 1rem;
+  }
+
+  .user-name {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+
+  .user-role {
+    text-transform: capitalize;
+  }
+
+  .user-image {
+    cursor: pointer;
+    height: 6vh;
+    border-radius: 50%;
+  }
+
+  .button-custom{
+    background-color: rgb(47, 52, 121);
+    color: white;
+
+  }
+
+  .link-custom {
+    color: rgb(47, 52, 121);
+    border: 0;
+    }
+
+
+
+
+
+  .logout-divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    width: 90%;
+  }
+
+  .alert {
+    z-index: 5;
+    width: fit-content;
+    align-self: center;
+  }
+
+

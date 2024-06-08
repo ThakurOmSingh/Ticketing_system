@@ -1,0 +1,14 @@
+/* Sidebar.css */
+
+.sidebar-item {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+  }
+
+  .sidebar-item.active {
+    background-color: rgb(47, 52, 121);
+    color: white;
+    
+  }
