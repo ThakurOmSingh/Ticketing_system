@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+
+model Query {
+  id             Int           @id @default(autoincrement())
+  uuid           String        @unique @default(uuid())
+  title          String
+  description    String        @db.Text
+  origin         String
+  applicationId  String
+  priority       Priority
+  status         Status        @default(NEW)
+  type           Type          @default(NONE)
+  userid         String?
+  userData       Json?
+  assignedTo     Int?
+  reason         String?        @db.Text
+  correspondences Correspondence[]
+  files          files[]
+  solvedBy       String?       @default("None")
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+
+model Correspondence {
+
+  id Int @id @default(autoincrement())
+  uuid String? @unique @default(uuid())
+  actionLog Json?
+  comment String @db.Text
+  actionType actionType
+  adminId  Int
+  queries  Query @relation(fields: [queryId], references: [id] )
+  queryId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model files {
+  id      Int @unique @default(autoincrement())
+  path    String
+  query   Query @relation(fields: [queryId] , references: [id])
+  queryId Int
+}
+
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum Status {
+  NEW
+  INPROGRESS
+  SOLVED
+  REOPEN
+}
+
+enum Type {
+  NONE
+  BUG
+  SALES
+}
+
+enum actionType {
+   PRIORITY
+   STATUS
+   TYPE
+   ASSIGNED
+   REOPEN
+   MULTIPLE
+   OTHER
+}
+
